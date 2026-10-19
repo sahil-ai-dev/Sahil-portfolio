@@ -4,44 +4,66 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About | Sahil Razza</title>
+<meta name="description" content="About Sahil Razza, B.Tech AIML student passionate about AI, web development and problem solving.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="light">
-<header><div class="container"><nav>
+<header><div class="container"><nav aria-label="Main">
 <a href="index.html" class="logo">Sahil</a>
 <ul>
 <li><a href="index.html">Home</a></li>
-<li><a href="about.html" class="active">About</a></li>
+<li><a href="about.html" class="active" aria-current="page">About</a></li>
 <li><a href="projects.html">Projects</a></li>
 <li><a href="skills.html">Skills</a></li>
 <li><a href="contact.html">Contact</a></li>
+<li><button id="theme" class="icon-btn" type="button" aria-label="Switch theme">◐</button></li>
 <li><a href="resume.pdf" class="btn small">Resume</a></li>
 </ul></nav></div></header>
+
 <main><div class="container">
 <div class="grid2">
 <section>
 <p class="eyebrow">About me</p>
 <h2>Who I am</h2>
-<p>I'm Sahil Razza, a 2nd year B.Tech student at Ambalika Institute of Management and Technology (AIML).</p><br>
-<p>I'm passionate about Artificial Intelligence, Web Development, and problem solving. I enjoy learning new technologies and building useful projects that make an impact.</p>
+<p>I'm Sahil Razza, a 2nd year B.Tech student at Ambalika Institute of Management and Technology (AIML).</p>
+<p>I'm passionate about Artificial Intelligence, Web Development and problem solving. I enjoy learning new technologies and building projects that solve real problems, from web apps to ML experiments.</p>
 <ul class="info">
-<li><strong>College:</strong> Ambalika Institute of Management and Technology</li>
-<li><strong>Branch:</strong> AIML</li>
-<li><strong>Year:</strong> 2nd Year (Sem 3)</li>
-<li><strong>Expected graduation:</strong> 2029</li>
+<li><strong>College</strong><span>Ambalika Institute of Management and Technology</span></li>
+<li><strong>Branch</strong><span>AIML</span></li>
+<li><strong>Year</strong><span>2nd Year (Sem 3)</span></li>
+<li><strong>Graduation</strong><span>2029</span></li>
 </ul>
 </section>
+
 <section class="panel">
 <h3>My Journey</h3>
 <ul class="timeline">
-<li><strong>2024</strong>Joined College</li>
+<li><strong>2025</strong>Joined College</li>
 <li><strong>2025</strong>Started Exploring Web Dev</li>
 <li><strong>2026</strong>Learning Python &amp; DSA</li>
-<li><strong>2029</strong>Goal: Become an AI/ML Professional</li>
+<li class="goal"><strong>2029</strong>Goal: Become an AI/ML Professional</li>
 </ul>
 </section>
 </div>
 </div></main>
+
 <footer>&copy; 2026 Sahil Razza</footer>
+
+<script>
+(function () {
+  var body = document.body, btn = document.getElementById('theme');
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved) body.className = saved;
+  } catch (e) {}
+  btn.addEventListener('click', function () {
+    body.className = body.classList.contains('light') ? 'dark' : 'light';
+    try { localStorage.setItem('theme', body.className); } catch (e) {}
+  });
+})();
+</script>
 </body>
 </html>

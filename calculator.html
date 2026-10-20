@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculator App | Sahil Razza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="calculator.css">
+</head>
+<body>
+
+<div class="topbar">
+  <a class="pill" href="projects.html">&larr; Projects</a>
+  <button class="pill" id="theme" type="button" aria-label="Switch theme">Light / Dark</button>
+</div>
+
+<main class="calc">
+  <p class="title">Calculator</p>
+  <div class="screen" aria-live="polite">
+    <div class="prev" id="prev"></div>
+    <div class="curr" id="curr">0</div>
+  </div>
+
+  <div class="keys" id="keys">
+    <button class="k fn" data-act="clear">AC</button>
+    <button class="k fn" data-act="del">DEL</button>
+    <button class="k fn" data-act="percent">%</button>
+    <button class="k op" data-op="/">&divide;</button>
+
+    <button class="k" data-num="7">7</button>
+    <button class="k" data-num="8">8</button>
+    <button class="k" data-num="9">9</button>
+    <button class="k op" data-op="*">&times;</button>
+
+    <button class="k" data-num="4">4</button>
+    <button class="k" data-num="5">5</button>
+    <button class="k" data-num="6">6</button>
+    <button class="k op" data-op="-">&minus;</button>
+
+    <button class="k" data-num="1">1</button>
+    <button class="k" data-num="2">2</button>
+    <button class="k" data-num="3">3</button>
+    <button class="k op" data-op="+">+</button>
+
+    <button class="k zero" data-num="0">0</button>
+    <button class="k" data-num=".">.</button>
+    <button class="k eq" data-act="equals">=</button>
+  </div>
+
+  <div class="history">
+    <div class="history-head"><span>History</span><button type="button" id="clearHist">Clear</button></div>
+    <ul id="hist"><li class="empty">No calculations yet</li></ul>
+  </div>
+</main>
+
+<script src="calculator.js"></script>
+</body>
+</html>

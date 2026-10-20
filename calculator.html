@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Nova Calculator</title>
+    <title>Hey buddy..!! | Calculator</title>
 
     <style>
         * {
@@ -19,124 +19,129 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: radial-gradient(
-                circle at top left,
-                #24304b,
-                #10131d 55%,
-                #090b10
-            );
             padding: 20px;
+            background:
+                radial-gradient(ellipse at top left, #243b48, transparent 50%),
+                linear-gradient(135deg, #080b12, #151b2b, #080b12);
+            color: #f5f7ff;
         }
 
         .calculator {
-            width: 350px;
+            width: 370px;
             max-width: 100%;
             padding: 25px;
-            border-radius: 28px;
-            background: rgba(25, 30, 43, 0.92);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+            border-radius: 30px;
+            background: rgba(20, 27, 41, 0.94);
+            border: 1px solid #344052;
+            box-shadow: 0 25px 70px #0008;
         }
 
         .header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 22px;
         }
 
         .brand {
+            font-size: 22px;
+            font-weight: 750;
+            letter-spacing: -0.5px;
             color: #ffffff;
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 1px;
         }
 
-        .badge {
-            color: #7ef0c5;
-            font-size: 11px;
-            letter-spacing: 2px;
+        .brand span {
+            color: #80e8ce;
+        }
+
+        .status {
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            color: #80e8ce;
+            background: #1b3637;
+            padding: 8px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
         }
 
         .display {
-            min-height: 125px;
+            min-height: 145px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
             align-items: flex-end;
-            padding: 15px 5px 25px;
+            justify-content: flex-end;
+            padding: 12px 4px 25px;
             overflow: hidden;
         }
 
-        .previous {
+        .history {
             width: 100%;
             min-height: 25px;
             text-align: right;
-            color: #858da3;
-            font-size: 16px;
+            font-size: 14px;
+            color: #8491a9;
             overflow-wrap: anywhere;
         }
 
-        .current {
+        .result {
             width: 100%;
             text-align: right;
-            color: #ffffff;
-            font-size: clamp(30px, 9vw, 42px);
+            font-size: clamp(30px, 8vw, 43px);
             font-weight: 500;
+            letter-spacing: -1px;
             overflow-wrap: anywhere;
+            color: #ffffff;
         }
 
         .buttons {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 11px;
         }
 
         button {
+            min-width: 0;
             height: 58px;
-            border: none;
+            border: 1px solid #ffffff08;
             border-radius: 17px;
-            background: #292f40;
-            color: #f4f6ff;
-            font-size: 20px;
+            background: #252e40;
+            color: #f5f7ff;
+            font-size: 19px;
             cursor: pointer;
-            transition: 0.18s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        button:hover {
-            background: #394158;
-            transform: translateY(-2px);
+            transition: background 0.18s, transform 0.18s;
         }
 
         button:active {
             transform: scale(0.94);
         }
 
-        .utility {
-            color: #7ef0c5;
-            background: #233a3b;
+        button:focus-visible {
+            outline: 2px solid #80e8ce;
+            outline-offset: 2px;
+        }
+
+        .function {
+            background: #1d383a;
+            color: #80e8ce;
         }
 
         .operator {
-            color: #aabaff;
             background: #303750;
+            color: #b8c4ff;
         }
 
         .delete {
-            color: #ff9b9b;
-            background: #422c39;
+            background: #412b39;
+            color: #ffb4c1;
         }
 
         .equals {
-            background: linear-gradient(135deg, #7ef0c5, #5cc9db);
-            color: #101820;
-            font-size: 25px;
-            font-weight: 700;
-        }
-
-        .equals:hover {
-            background: linear-gradient(135deg, #a0ffda, #80e6f2);
+            grid-column: span 4;
+            background: linear-gradient(120deg, #80e8ce, #70c8ed);
+            color: #101824;
+            font-size: 21px;
+            font-weight: 750;
         }
 
         .zero {
@@ -144,20 +149,32 @@
         }
 
         .footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
             margin-top: 22px;
-            text-align: center;
-            color: #6f788e;
-            font-size: 11px;
-            letter-spacing: 2px;
+            font-size: 10px;
+            letter-spacing: 1px;
+            color: #8792a8;
         }
 
-        @media (max-width: 380px) {
+        @media (hover: hover) {
+            button:hover {
+                background: #38445a;
+            }
+
+            .equals:hover {
+                background: #a2f4df;
+            }
+        }
+
+        @media (max-width: 390px) {
             .calculator {
                 padding: 18px;
             }
 
             .buttons {
-                gap: 9px;
+                gap: 8px;
             }
 
             button {
@@ -173,81 +190,93 @@
     <main class="calculator">
 
         <header class="header">
-            <div class="brand">NOVA.</div>
-            <div class="badge">CALCULATOR</div>
+            <div class="brand">Hey buddy<span>..!!</span></div>
+            <div class="status">● READY</div>
         </header>
 
-        <section class="display">
-            <div class="previous" id="previous"></div>
-            <div class="current" id="current">0</div>
+        <section class="display" aria-live="polite">
+            <div class="history" id="history"></div>
+            <div class="result" id="result">0</div>
         </section>
 
         <section class="buttons">
 
-            <button class="utility" data-action="clear">AC</button>
-            <button class="utility" data-action="bracket">( )</button>
-            <button class="utility" data-action="percent">%</button>
-            <button class="delete" data-action="delete">⌫</button>
+            <button type="button" class="function" data-action="clear">AC</button>
+            <button type="button" class="function" data-action="bracket">( )</button>
+            <button type="button" class="function" data-action="percent">%</button>
+            <button type="button" class="delete" data-action="delete">⌫</button>
 
-            <button data-number="7">7</button>
-            <button data-number="8">8</button>
-            <button data-number="9">9</button>
-            <button class="operator" data-operator="/">÷</button>
+            <button type="button" data-number="7">7</button>
+            <button type="button" data-number="8">8</button>
+            <button type="button" data-number="9">9</button>
+            <button type="button" class="operator" data-operator="/">÷</button>
 
-            <button data-number="4">4</button>
-            <button data-number="5">5</button>
-            <button data-number="6">6</button>
-            <button class="operator" data-operator="*">×</button>
+            <button type="button" data-number="4">4</button>
+            <button type="button" data-number="5">5</button>
+            <button type="button" data-number="6">6</button>
+            <button type="button" class="operator" data-operator="*">×</button>
 
-            <button data-number="1">1</button>
-            <button data-number="2">2</button>
-            <button data-number="3">3</button>
-            <button class="operator" data-operator="-">−</button>
+            <button type="button" data-number="1">1</button>
+            <button type="button" data-number="2">2</button>
+            <button type="button" data-number="3">3</button>
+            <button type="button" class="operator" data-operator="-">−</button>
 
-            <button class="utility" data-action="sign">+/−</button>
-            <button class="zero" data-number="0">0</button>
-            <button data-action="decimal">.</button>
-            <button class="operator" data-operator="+">+</button>
+            <button type="button" class="function" data-action="sign">+/−</button>
+            <button type="button" class="zero" data-number="0">0</button>
+            <button type="button" data-action="decimal">.</button>
+            <button type="button" class="operator" data-operator="+">+</button>
 
-            <button class="equals" data-action="equals"
-                    style="grid-column: span 4;">=</button>
+            <button type="button" class="equals" data-action="equals">
+                Calculate&nbsp; =
+            </button>
 
         </section>
 
         <footer class="footer">
-            SIMPLE • SMART • ELEGANT
+            <span>MADE FOR YOU</span>
+            <span>HTML · CSS · JS</span>
         </footer>
 
     </main>
 
     <script>
-        const currentDisplay = document.getElementById("current");
-        const previousDisplay = document.getElementById("previous");
+        const resultDisplay = document.getElementById("result");
+        const historyDisplay = document.getElementById("history");
 
         let expression = "";
         let justCalculated = false;
 
         function updateDisplay() {
-            currentDisplay.textContent =
-                expression.replace(/\*/g, "×").replace(/\//g, "÷") || "0";
+            resultDisplay.textContent = expression
+                ? expression.replace(/\*/g, "×").replace(/\//g, "÷")
+                : "0";
         }
 
         function addNumber(number) {
             if (justCalculated) {
                 expression = "";
+                historyDisplay.textContent = "";
                 justCalculated = false;
             }
 
-            if (expression.length >= 100) return;
+            if (expression.length < 100) {
+                expression += number;
+            }
 
-            expression += number;
             updateDisplay();
         }
 
         function addOperator(operator) {
-            justCalculated = false;
+            if (justCalculated) {
+                historyDisplay.textContent = "";
+                justCalculated = false;
+            }
 
-            if (!expression && operator !== "-") return;
+            if (!expression) {
+                if (operator === "-") expression = "-";
+                updateDisplay();
+                return;
+            }
 
             if (/[+\-*/.]$/.test(expression)) {
                 expression = expression.slice(0, -1);
@@ -260,6 +289,7 @@
         function addDecimal() {
             if (justCalculated) {
                 expression = "";
+                historyDisplay.textContent = "";
                 justCalculated = false;
             }
 
@@ -275,8 +305,8 @@
 
         function clearAll() {
             expression = "";
-            previousDisplay.textContent = "";
             justCalculated = false;
+            historyDisplay.textContent = "";
             updateDisplay();
         }
 
@@ -308,10 +338,7 @@
             const opens = (expression.match(/\(/g) || []).length;
             const closes = (expression.match(/\)/g) || []).length;
 
-            if (
-                !expression ||
-                /[+\-*/(]$/.test(expression)
-            ) {
+            if (!expression || /[+\-*/(]$/.test(expression)) {
                 expression += "(";
             } else if (opens > closes) {
                 expression += ")";
@@ -323,9 +350,7 @@
         }
 
         function addPercent() {
-            const match = expression.match(
-                /(\d+\.?\d*|\.\d+)$/
-            );
+            const match = expression.match(/(?:\d+\.?\d*|\.\d+)$/);
 
             if (!match) return;
 
@@ -337,13 +362,13 @@
             updateDisplay();
         }
 
-        // Safely calculate expressions using a restricted parser.
-        function calculate(expressionText) {
-            const tokens = expressionText.match(
+        // A restricted parser calculates expressions without eval().
+        function calculate(input) {
+            const tokens = input.match(
                 /\d*\.?\d+|[()+\-*/]/g
             );
 
-            if (!tokens || tokens.join("") !== expressionText) {
+            if (!tokens || tokens.join("") !== input) {
                 throw new Error("Invalid expression");
             }
 
@@ -357,7 +382,6 @@
                     tokens[position] === "-"
                 ) {
                     const operator = tokens[position++];
-
                     const right = parseTerm();
 
                     value = operator === "+"
@@ -424,13 +448,16 @@
                 throw new Error("Invalid expression");
             }
 
-            const result = parseExpression();
+            const answer = parseExpression();
 
-            if (position !== tokens.length || !Number.isFinite(result)) {
+            if (
+                position !== tokens.length ||
+                !Number.isFinite(answer)
+            ) {
                 throw new Error("Invalid calculation");
             }
 
-            return result;
+            return answer;
         }
 
         function showResult() {
@@ -438,20 +465,22 @@
 
             try {
                 const original = expression;
-                const result = calculate(expression);
+                const answer = calculate(expression);
 
-                previousDisplay.textContent =
-                    original.replace(/\*/g, "×").replace(/\//g, "÷") + " =";
+                historyDisplay.textContent =
+                    original.replace(/\*/g, "×").replace(/\//g, "÷")
+                    + " =";
 
-                expression = String(
-                    Number(result.toPrecision(12))
-                );
-
+                expression = String(Number(answer.toPrecision(12)));
                 justCalculated = true;
+
                 updateDisplay();
 
             } catch (error) {
-                currentDisplay.textContent = "Error";
+                historyDisplay.textContent =
+                    "Invalid expression — try again";
+
+                resultDisplay.textContent = "Error";
                 expression = "";
                 justCalculated = true;
             }
@@ -471,15 +500,35 @@
 
         document.querySelectorAll("[data-action]").forEach(button => {
             button.addEventListener("click", () => {
-                const action = button.dataset.action;
+                switch (button.dataset.action) {
+                    case "clear":
+                        clearAll();
+                        break;
 
-                if (action === "clear") clearAll();
-                if (action === "delete") deleteLast();
-                if (action === "decimal") addDecimal();
-                if (action === "bracket") addBracket();
-                if (action === "percent") addPercent();
-                if (action === "sign") toggleSign();
-                if (action === "equals") showResult();
+                    case "delete":
+                        deleteLast();
+                        break;
+
+                    case "decimal":
+                        addDecimal();
+                        break;
+
+                    case "bracket":
+                        addBracket();
+                        break;
+
+                    case "percent":
+                        addPercent();
+                        break;
+
+                    case "sign":
+                        toggleSign();
+                        break;
+
+                    case "equals":
+                        showResult();
+                        break;
+                }
             });
         });
 
@@ -497,10 +546,6 @@
                 deleteLast();
             } else if (event.key === "Escape") {
                 clearAll();
-            } else if (event.key === "(" || event.key === ")") {
-                expression += event.key;
-                justCalculated = false;
-                updateDisplay();
             }
         });
     </script>
